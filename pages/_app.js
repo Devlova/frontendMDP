@@ -2,8 +2,6 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import Page from '../components/Page.js';
-import { ApolloProvider } from 'react-apollo';
-import withData from '../lib/withData';
 
 class MyApp extends App {
   componentDidMount() {
@@ -19,17 +17,15 @@ class MyApp extends App {
 
     return (
       <React.Fragment>
-        <ApolloProvider client={apollo}>
-          <Head>
-            <title>My page</title>
-          </Head>
-          <Page>
-            <Component {...pageProps} />
-          </Page>
-        </ApolloProvider>
+        <Head>
+          <title>My page</title>
+        </Head>
+        <Page>
+          <Component {...pageProps} />
+        </Page>
       </React.Fragment>
     );
   }
 }
 
-export default withData(MyApp);
+export default MyApp;
