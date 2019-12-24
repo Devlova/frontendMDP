@@ -12,6 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import NavMenu from './NavMenu';
+import Link from 'next/Link';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -33,7 +34,12 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
   hide: {
     display: 'none',
   },
@@ -102,11 +108,12 @@ function Nav(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography variant="h6" className={classes.title}>
             Multi Daya Prima
           </Typography>
-          <Button color="inherit" edge="end">Login</Button>
-          
+          <Link href="/login" passHref>
+            <Button color="inherit">Login</Button>
+          </Link>
         </Toolbar>
       </AppBar>
       <Drawer
