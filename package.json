@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "nodemon",
     "build": "next build",
-    "start": "next start"
+    "start": "node server/server.js",
+    "start-next": "next start"
   },
   "dependencies": {
     "@material-ui/core": "^4.8.0",
@@ -13,8 +14,14 @@
     "cross-env": "^6.0.3",
     "express": "^4.17.1",
     "isomorphic-unfetch": "^3.0.0",
+    "mysql": "^2.17.1",
     "next": "9.1.6",
     "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "react-dom": "16.12.0",
+    "util": "^0.12.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.2"
   }
 }

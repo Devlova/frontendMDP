@@ -1,7 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
-import Page from '../components/Page.js';
+import Page from '../components/Page';
 
 class MyApp extends App {
   componentDidMount() {
