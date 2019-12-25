@@ -12,16 +12,16 @@ module.exports = function(app) {
     app.route('/users/:user_id')
         .get(todoList.findUsers);
 
-    app.route('/search')
+    app.route('/fsearch')
         .get(todoList.searchUsers);
 
-    app.route('/users')
+    app.route('/fusers')
         .post(todoList.createUsers);
 
-    app.route('/users')
+    app.route('/fusers')
         .put(todoList.updateUsers);
     
-    app.route('/users')
+    app.route('/fusers')
         .delete(todoList.deleteUsers);
     
     app.route('/find/:user_id')
@@ -30,6 +30,6 @@ module.exports = function(app) {
     //app.route('/')
         //.get(todoList.index);
 
-    //app.route('/users')
-      //  .get(todoList.users);
+    app.route('/fusers')
+        .get(todoList.users);
 };
