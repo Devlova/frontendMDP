@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/54147290/nextjs-form-data-isnt-sent-to-the-express-server/54148262
+http://www.boduch.ca/2019/04/refreshing-nextjs-page-data.html

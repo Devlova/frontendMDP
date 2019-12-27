@@ -3,6 +3,35 @@
 var response = require('./res');
 var connection = require('./conn');
 
+exports.serversx = function(req,res) {
+    const first_name = req.body.first_name
+    const last_name = req.body.last_name
+
+    connection.query('INSERT INTO person (first_name, last_name) values (?,?)',
+    [ first_name, last_name ], 
+    function (error, rows, fields){
+        if(error){
+            console.log(error)
+        } else{
+            return res.send({first_name})
+        }
+    });
+}
+
+exports.createUsers = function(req, res) {
+    var first_name = req.body.first_name;
+    var last_name = req.body.last_name;
+    connection.query('INSERT INTO person (first_name, last_name) values (?,?)',
+    [ first_name, last_name ], 
+    function (error, rows, fields){
+        if(error){
+            console.log(error)
+        } else{
+            response.ok("Berhasil menambahkan user!", res)
+        }
+    });
+};
+
 exports.users = function(req, res) {
     connection.query('SELECT * FROM person', function (error, rows, fields){
         if(error){
@@ -40,20 +69,6 @@ exports.searchUsers = function(req, res) {
             console.log(error)
         } else{
             response.ok(rows, res)
-        }
-    });
-};
-
-exports.createUsers = function(req, res) {
-    var first_name = req.body.first_name;
-    var last_name = req.body.last_name;
-    connection.query('INSERT INTO person (first_name, last_name) values (?,?)',
-    [ first_name, last_name ], 
-    function (error, rows, fields){
-        if(error){
-            console.log(error)
-        } else{
-            response.ok("Berhasil menambahkan user!", res)
         }
     });
 };
