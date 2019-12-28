@@ -11,6 +11,9 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 
 import Divider from "@material-ui/core/Divider";
 import { withStyles } from "@material-ui/core/styles";
+
+import Link from 'next/Link';
+
 const styles = theme => ({
     root: {
         width: "100%",
@@ -23,53 +26,116 @@ const styles = theme => ({
 });
 function getItems() {
     var json = {
-        list: [
+        list: 
+        [
             {
                 id: 1,
-                title: "Production",
+                title: "ADMIN",
+                linkgroup:"Admin",
                 items: [
                     {
                         id: 1,
-                        name: "Stock",
+                        name: "Gudang",
+                        linkgroup:"Gudang",
                         subitems: [
                             {
                                 id: 1,
-                                name: "Bahan Mentah"
+                                name: "Production",
+                                linkgroup:"Gudang",
                             },
                             {
                                 id: 2,
-                                name: "Product"
+                                name: "Distributor",
+                                linkgroup:"Gudang",
                             }
                         ]
                     },
                     {
                         id: 2,
-                        name: "Pengiriman"
+                        name: "User",
+                        linkgroup:"User",
+                        subitems: [
+                            {
+                                id: 1,
+                                name: "Manage",
+                                linkgroup:"User",
+                            },
+                            {
+                                id: 2,
+                                name: "Authority",
+                                linkgroup:"User",
+                            },
+                            {
+                                id: 3,
+                                name: "Registry",
+                                linkgroup:"User",
+                            },
+                            
+                        ]
                     },
                     {
                         id: 3,
-                        name: "Pengeluaran"
+                        name: "Mapping",
+                        linkgroup:"Mapping",
                     }
                 ]
             },
             {
                 id: 2,
-                title: "Distributor",
+                title: "Production",
+                linkgroup:"Production",
                 items: [
                     {
                         id: 1,
-                        name: "Stock Product",
+                        name: "Stock",
+                        linkgroup:"Production",
+                        subitems: [
+                            {
+                                id: 1,
+                                name: "Bahan Mentah",
+                                linkgroup:"Production",
+                            },
+                            {
+                                id: 2,
+                                name: "Product",
+                                linkgroup:"Production",
+                            }
+                        ]
+                    },
+                    {
+                        id: 2,
+                        name: "Pengiriman",
+                        linkgroup:"Production",
+                    },
+                    {
+                        id: 3,
+                        name: "Pengeluaran",
+                        linkgroup:"Production",
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Distributor",
+                linkgroup:"Distributor",
+                items: [
+                    {
+                        id: 1,
+                        name: "Stock",
+                        linkgroup:"Distributor",
                     },
                     {
                         id: 2,
                         name: "Penjualan",
+                        linkgroup:"Distributor",
                     },
                     {
                         id: 3,
                         name: "D'O",
+                        linkgroup:"Distributor",
                     }
                 ]
-            }
+            },
         ]
     };
     return json;
@@ -98,6 +164,7 @@ class Nav extends React.Component {
                                     <div key={item.id}>
                                         {item.subitems != null ? (
                                             <div key={item.id}>
+                                                
                                                 <ListItem
                                                     button
                                                     key={item.id}
@@ -115,6 +182,7 @@ class Nav extends React.Component {
                                                         <ExpandMore />
                                                     )}
                                                 </ListItem>
+                                                
                                                 <Collapse
                                                     key={list.items.id}
                                                     component="li"
@@ -122,10 +190,12 @@ class Nav extends React.Component {
                                                     timeout="auto"
                                                     unmountOnExit
                                                 >
+
                                                     <List disablePadding>
                                                         {item.subitems.map(
                                                             sitem => {
                                                                 return (
+                                                                    
                                                                     <ListItem
                                                                         button
                                                                         key={
@@ -135,6 +205,7 @@ class Nav extends React.Component {
                                                                             classes.nested
                                                                         }
                                                                     >
+                                                                        <Link href={'/'+sitem.linkgroup+'/'+sitem.name} passHref>
                                                                         <ListItemText
                                                                             key={
                                                                                 sitem.id
@@ -143,6 +214,7 @@ class Nav extends React.Component {
                                                                                 sitem.name
                                                                             }
                                                                         />
+                                                                        </Link>
                                                                     </ListItem>
                                                                 );
                                                             }
@@ -151,6 +223,7 @@ class Nav extends React.Component {
                                                 </Collapse>{" "}
                                             </div>
                                         ) : (
+                                            
                                             <ListItem
                                                 button
                                                 onClick={this.handleClick.bind(
@@ -159,10 +232,13 @@ class Nav extends React.Component {
                                                 )}
                                                 key={item.id}
                                             >
+                                                <Link href={'/'+item.linkgroup+'/'+item.name} passHref>
                                                 <ListItemText
                                                     primary={item.name}
                                                 />
+                                                </Link>
                                             </ListItem>
+                                            
                                         )}
                                     </div>
                                 );
@@ -175,6 +251,7 @@ class Nav extends React.Component {
         );
     }
 }
+
 Nav.propTypes = {
     classes: PropTypes.object.isRequired
 };
