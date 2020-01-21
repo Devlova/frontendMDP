@@ -1,19 +1,19 @@
 import fetch from "isomorphic-unfetch";
 import HomePage from '../components/HomePage';
 
-function HomePages({ order }) {
+function HomePages({ data }) {
     return (
-      <HomePage order={order}/>
+      <HomePage data={data}/>
     );
 }
 
 HomePages.getInitialProps = async (res) => {
   const result = await fetch(`http://localhost:3000/api/listuser`);
-  if (result.status === 200) return { order: await result.json() };
+  if (result.status === 200) return { data: await result.json() };
   if (result.error && res) {
     res.statusCode = 404;
   }
-  return { order: undefined };
+  return { data: undefined };
 };
 
 export default HomePages;

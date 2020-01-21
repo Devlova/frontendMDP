@@ -3,6 +3,9 @@
 module.exports = function(app) {
     var todoList = require('./controller');
 
+    app.route("/serversx")
+        .post(todoList.serversx)
+
     app.route("/api/order/:id")
         .get(todoList.Order);
 
